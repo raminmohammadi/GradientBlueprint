@@ -9,6 +9,8 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+.ipynb_checkpoints
+*.ipynb
 develop-eggs/
 dist/
 downloads/
