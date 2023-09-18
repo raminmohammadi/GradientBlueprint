@@ -60,6 +60,7 @@ class Variable:
 
     def __pow__(self, other):
         assert isinstance(other, (int, float)), "Only supporting int/float powers for now"
+        assert (self.data != 0.0 or (self.data ==0.0 and other > 0.0)), "0.0 can only be raised to a positive power"
         output = Variable(self.data ** other, _children=(self,), _op=f'**{other}')
 
         def _backward():
@@ -109,6 +110,8 @@ class Variable:
         """
         Return a / b where 2/3 is .66 rather than 0. This is also known as “true” division.
         """
+        assert (other.data!=0), "Division by 0 is undefined"
+        
         return self * other**-1
 
     def __neg__(self):
