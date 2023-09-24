@@ -19,7 +19,7 @@ jobs:
             python-version: 3.8
         
         - name: Install dependencies
-          run: conda install -file requirements.txt
+          run: conda install --file requirements.txt
         
         - name: Run unittests
           run: python test_Gradient.py
