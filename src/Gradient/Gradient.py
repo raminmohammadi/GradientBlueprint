@@ -125,7 +125,8 @@ class Variable:
          __rsub__() method implements the reverse subtraction operation that is subtraction with reflected,
          swapped operands. # other - self
         """
-        return other - self
+        #return other - self
+        return Variable(other) - self
 
     def __radd__(self, other): # other + self
         return self + other
@@ -143,3 +144,6 @@ class Variable:
         so we define __rmul__ which by default will run if __mul__ operation was not possible. 
         """
         return self * other
+
+    # def __eq__(self, other):
+    #     return self.data == other.data
