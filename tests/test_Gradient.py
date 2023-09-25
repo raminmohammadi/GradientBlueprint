@@ -2,9 +2,9 @@ import unittest
 import math
 import sys
 
-sys.path.append('../src/')
+sys.path.append('../src/Gradient/')
 
-from Gradient.Gradient import Variable
+from Gradient import Variable
 
 class Test_Gradient(unittest.TestCase):
 
