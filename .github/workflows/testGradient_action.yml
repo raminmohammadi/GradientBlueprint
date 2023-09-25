@@ -25,7 +25,7 @@ jobs:
           run: cd tests            
 
         - name: Run unittests
-          run: python test_Gradient.py
+          run: python -m unittest test.test_unittest
         
         - name: Notify on success
           if: success()
