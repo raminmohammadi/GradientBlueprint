@@ -18,6 +18,9 @@ jobs:
           with:
             python-version: 3.8
         
+        - name: Change to tests directory
+          run: cd tests            
+          
         - name: Run unittests
           run: python test_Gradient.py
         
