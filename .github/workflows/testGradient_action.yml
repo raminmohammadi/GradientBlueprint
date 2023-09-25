@@ -1,4 +1,4 @@
-name: Unittest - Variable part-2
+name: Unittest - Variable
 
 on:
     push:
@@ -16,13 +16,7 @@ jobs:
         - name: Set up Python
           uses: actions/setup-python@v2
           with:
-            python-version: 3.8
-
-        - name: Check the contents
-          run: ls -r 
-            
-        - name: Change to tests directory
-          run: cd tests            
+            python-version: 3.8           
 
         - name: Run unittests
           run: python -m unittest test.test_unittest

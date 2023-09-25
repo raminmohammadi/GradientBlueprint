@@ -7,16 +7,23 @@ sys.path.append('../src/Gradient/')
 from Gradient import Variable
 
 class Test_Gradient(unittest.TestCase):
+    """Tests the following functions of Variable class.
+    1. __add__()
+    2. __sub__()
+    3. __mul__()
+    4. __pow__()
+    5. exp()
+    """
 
     def setUp(self):
-        """This method recreates variables for each new test"""
+        """This method resets variables for each new test."""
         
         self.a = Variable(0)
         self.b = Variable(1.0); self.b.label = 'b'
         self.c = Variable(-2.0); self.c.label = 'c'
 
     def validate_variable_attributes(self, variable, data, prev, _op, label, grad):
-        """Validates each attribute of variable"""
+        """Validates each attribute of variable."""
         
         self.assertEqual(variable.data, data)
         self.assertEqual(variable._prev, prev)
@@ -27,14 +34,14 @@ class Test_Gradient(unittest.TestCase):
 
     #------------------------------TESTS------------------------------
     def test_variable(self):
-        """Verifies the attributes of newly created `Variable` instance"""
+        """Verifies the attributes of newly created `Variable` instance."""
 
         self.validate_variable_attributes(self.a, 0, set(), '', '', 0.0)
         self.validate_variable_attributes(self.b, 1.0, set(), '', 'b', 0.0)
         self.validate_variable_attributes(self.c, -2.0, set(), '', 'c', 0.0)
     
     def test_add(self):
-        """Tests add fn"""
+        """Tests __add__() function."""
 
         # a + a
         result = self.a + self.a
@@ -53,7 +60,7 @@ class Test_Gradient(unittest.TestCase):
         self.validate_variable_attributes(result, -2.0, {self.c, self.a}, '+', '', 0.0)
 
     def test_subract(self):
-        """Tests subtract fn"""
+        """Tests __sub__() function."""
         
         # a - a
         result = self.a - self.a
@@ -72,7 +79,7 @@ class Test_Gradient(unittest.TestCase):
         self.validate_variable_attributes(result, -2.0, {self.c, self.a}, '-', '', 0.0)
     
     def test_mulitply(self):
-        """Tests multiply fn"""
+        """Tests __mul__() function."""
     
          # a * a
         result = self.a * self.a
@@ -95,7 +102,7 @@ class Test_Gradient(unittest.TestCase):
         self.validate_variable_attributes(result, 4.0, {self.c}, '*', '', 0.0)   
 
     def test_pow(self):
-        """Tests power fn"""
+        """Tests __pow__() function."""
 
         # a ** 0
         with self.assertRaises(AssertionError):
@@ -118,7 +125,7 @@ class Test_Gradient(unittest.TestCase):
         self.validate_variable_attributes(result, 0.25, {self.c}, '**-2.0', '', 0.0)
 
     def test_exp(self):
-        """Tests exp fn"""
+        """Tests exp() function."""
 
          # e * 0.0
         result = self.a.exp()
