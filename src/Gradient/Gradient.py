@@ -60,6 +60,7 @@ class Variable:
 
     def __pow__(self, other):
         assert isinstance(other, (int, float)), "Only supporting int/float powers for now"
+        assert (self.data != 0.0 or (self.data ==0.0 and other > 0.0)), "0.0 can only be raised to a positive power"
         output = Variable(self.data ** other, _children=(self,), _op=f'**{other}')
 
         def _backward():
@@ -109,6 +110,8 @@ class Variable:
         """
         Return a / b where 2/3 is .66 rather than 0. This is also known as “true” division.
         """
+        assert (other.data!=0), "Division by 0 is undefined"
+        
         return self * other**-1
 
     def __neg__(self):
@@ -122,7 +125,8 @@ class Variable:
          __rsub__() method implements the reverse subtraction operation that is subtraction with reflected,
          swapped operands. # other - self
         """
-        return other - self
+        #return other - self
+        return Variable(other) - self
 
     def __radd__(self, other): # other + self
         return self + other
@@ -140,3 +144,6 @@ class Variable:
         so we define __rmul__ which by default will run if __mul__ operation was not possible. 
         """
         return self * other
+
+    # def __eq__(self, other):
+    #     return self.data == other.data
