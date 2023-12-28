@@ -1,7 +1,17 @@
-from Gradient import Variable
+import sys
+
+# Get the parent directory
+parent_directory = sys.path[0]  # Assumes the script is in the parent directory
+
+# Add the parent directory to the Python path
+sys.path.append(parent_directory)
+from  src.Helpers.DrawGraph import draw_dot
+from src.Gradient.Gradient import Variable
+
 import math
 
 class Activations(Variable):
+    @staticmethod
     def sigmoid(self):
         n = self.data
         t = 1/(1 + math.exp(-n))
@@ -12,7 +22,8 @@ class Activations(Variable):
 
         output._backward = _backward        
         return output
-
+    
+    @staticmethod
     def tanh(self):
         n = self.data
         t = (math.exp(2*n) - 1)/(math.exp(2*n) + 1)
@@ -24,6 +35,7 @@ class Activations(Variable):
         output._backward = _backward        
         return output
 
+    @staticmethod
     def relu(self):
         """
         The product of gradients of ReLU function doesn't end up converging to 0 as the value is either 0 or 1.
@@ -41,7 +53,8 @@ class Activations(Variable):
 
         output._backward = _backward        
         return output
-
+    
+    @staticmethod
     def leaky_relu(self):
         """
         """
@@ -58,18 +71,23 @@ class Activations(Variable):
         output._backward = _backward        
         return output        
 
-    # @staticmethod
-    # def softmax(self, xs):
-    #     datas = [x.data for x in xs]
-    #     e_x = [np.exp(a - max(datas)) for a in [self.data] + datas]
-    #     smx = e_x[0] / sum(e_x)
-    #     output = Variable(smx, _children=(self, ), _op = 'softmax')
+    @staticmethod
+    def softmax(self):
+        n = [x.data for x in self]
+        exp_n = [math.exp(x) for x in n]
+        sum_exp_n = sum(exp_n)
+        t = [x / sum_exp_n for x in exp_n]
+        output = [Variable(t[i], _children=(self[i], ), _op='softmax') for i in range(len(t))]
 
-        # def _backward():
-        #     if  > 0:
-        #         self.grad += 1 * output.grad
-        #     else:
-        #         self.grad += 0.01 * output.grad
-                
-        # output._backward = _backward        
-        # return output    
+        def _backward():              
+            for i in range(len(self)):
+                for j in range(len(self)):
+                    if i == j:
+                        self[i].grad += t[i] * (1 - t[i]) * output[j].grad
+                    else:
+                        self[i].grad += -t[i] * t[j] * output[j].grad
+
+        for i in range(len(output)):
+            output[i]._backward = _backward                 
+        
+        return output    
