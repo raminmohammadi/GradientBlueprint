@@ -1,4 +1,12 @@
-import math
+import sys
+# Get the parent directory
+parent_directory = sys.path[0]  # Assumes the script is in the parent directory
+
+# Add the parent directory to the Python path
+sys.path.append(parent_directory)
+from  src.Helpers.DrawGraph import draw_dot
+import math, random
+import numpy as np
 
 
 class Variable:
@@ -78,7 +86,16 @@ class Variable:
             self.grad += output.grad * output.data
         output._backward = _backward
         return output
-            
+      
+    def log(self):
+        x = self.data
+        output = Variable(math.log(x), _children=(self, ), _op='log')
+        
+        def _backward():
+            self.grad += output.grad * (x ** -1)
+        output._backward = _backward
+        return output
+
 
     def backward(self):
         topological_graph = []
@@ -125,8 +142,8 @@ class Variable:
          __rsub__() method implements the reverse subtraction operation that is subtraction with reflected,
          swapped operands. # other - self
         """
-        #return other - self
-        return Variable(other) - self
+        return (self - other)  * -1
+
 
     def __radd__(self, other): # other + self
         return self + other
@@ -137,6 +154,7 @@ class Variable:
         swapped operands. So, when you call other / self,
         """
         return other * self**-1
+    
 
     def __rmul__(self, other):
         """
