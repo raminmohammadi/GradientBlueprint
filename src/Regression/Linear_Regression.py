@@ -7,6 +7,7 @@ sys.path.append(parent_directory)
 from  src.Helpers.DrawGraph import draw_dot
 from src.Gradient.Gradient import Variable
 from src.Optimizers.optimizer import Optimizer
+from src.Cost_functions.Cost_functions import CostFunction
 import math, random
 import numpy as np
 
@@ -14,6 +15,7 @@ class LinearRegression:
     def __init__(self, input_dim):
         self.w = [Variable(random.uniform(-1, 1), label=f"W{_}") for _ in range(input_dim)]
         self.b = Variable(random.uniform(-1, 1), label="b")
+        self.costFunction = getattr(CostFunction, 'sse')
         
     def parameters(self):
         return self.w + [self.b]
@@ -54,7 +56,7 @@ class LinearRegression:
 
             # Forward pass
             if optimizer == 'SGD':
-                losses = [(y_hat - y_)**2 + self.regularizer(regularization_term) for y_hat, y_ in zip(ypreds, yb)]
+                losses = [self.costFunction(y_hat, y_) + self.regularizer(regularization_term) for y_hat, y_ in zip(ypreds, yb)]
                 # Backward Pass
                 gradients = {parameter.label: [] for parameter in self.parameters()}
                 for k, loss in enumerate(losses):
@@ -66,7 +68,7 @@ class LinearRegression:
 
             else:
                 # batch GD
-                loss = sum(((ypred - y_)**2  for ypred, y_ in zip(ypreds, yb)), Variable(0)) + self.regularizer(regularization_term)
+                loss = sum((self.costFunction(y_hat, y_)  for ypred, y_ in zip(ypreds, yb)), Variable(0)) + self.regularizer(regularization_term)
                 loss.backward()
 
             # Update using specified optimizer

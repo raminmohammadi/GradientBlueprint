@@ -9,6 +9,7 @@ from src.Helpers.DrawGraph import draw_dot
 from src.Gradient.Gradient import Variable
 from src.Optimizers.optimizer import Optimizer
 from src.NNS.Activation_Functions import Activations
+from src.Cost_functions.Cost_functions import CostFunction
 
 
 class LogisticRegression:
@@ -17,10 +18,12 @@ class LogisticRegression:
             self.w = [[Variable(random.uniform(-1, 1), label=f"Class{k}_W{_}") for _ in range(input_dim)] for k in range(k)]
             self.b = [Variable(random.uniform(-1, 1), label=f"Class{k}_b") for k in range(k)]
             self.activation = getattr(Activations, 'softmax')
+            self.costFunction = getattr(CostFunction, 'categorical_cross_entropy_loss')
         else:
             self.w = [Variable(random.uniform(-1, 1), label=f"W{_}") for _ in range(input_dim)]
             self.b = Variable(random.uniform(-1, 1), label="b")
             self.activation = getattr(Activations, 'sigmoid')
+            self.costFunction = getattr(CostFunction, 'log_loss')
         self.multiclass = multiclass
         
     def parameters(self):
@@ -52,17 +55,6 @@ class LogisticRegression:
             penalty_term += (param ** 2)
         return penalty_term * regularization_term / (2 * len(self.w))
     
-    def log_loss(self, y_hat, y):
-        if y[0] == 1:
-            loss = y_hat.log()
-        else:
-            loss = (1 - y_hat).log()
-        return -loss
-    
-    def categorical_cross_entropy_loss(self, y_hat, y):
-        loss = y_hat[y[0]].log()
-        return -loss
-        
     
     def fit(self, X, y, learning_rate=0.001, num_epochs=300,
             batch_size=1024, optimizer='SGD', regularization_term = 0.05):
@@ -79,7 +71,7 @@ class LogisticRegression:
             # Forward pass
             if optimizer == 'SGD':
                 if self.multiclass:
-                    losses = [self.categorical_cross_entropy_loss(ypred, y_) for ypred, y_ in zip(ypreds, yb)]   
+                    losses = [self.costFunction(ypred, y_) for ypred, y_ in zip(ypreds, yb)]   
                     gradients = {parameter.label: [] for parameters in self.parameters() for parameter in parameters}
                     
                     for k, loss in enumerate(losses):
@@ -91,7 +83,7 @@ class LogisticRegression:
                                 parameter.grad = 0.0
 
                 else:
-                    losses = [self.log_loss(ypred, y_) + self.regularizer(regularization_term) for ypred,
+                    losses = [self.costFunction(ypred, y_) + self.regularizer(regularization_term) for ypred,
                           y_ in zip(ypreds, yb)]
                     # Backward Pass
                     gradients = {parameter.label: [] for parameter in self.parameters()}
@@ -105,11 +97,11 @@ class LogisticRegression:
             else:
                 # batch GD
                 if self.multiclass:
-                    loss = sum((self.log_loss(ypred, y_) for ypred, y_ in zip(ypreds, yb)),
-                           Variable(0)) + self.regularizer(regularization_term)                
+                    loss = sum((self.costFunction(ypred, y_) for ypred, y_ in zip(ypreds, yb)),
+                           Variable(0))               
                 else:
-                    loss = sum((self.cross_entropy_loss(ypred, y_) for ypred, y_ in zip(ypreds, yb)),
-                           Variable(0))
+                    loss = sum((self.costFunction(ypred, y_) for ypred, y_ in zip(ypreds, yb)),
+                           Variable(0)) + self.regularizer(regularization_term) 
                 loss.backward()
 
             # Update using specified optimizer
@@ -118,7 +110,7 @@ class LogisticRegression:
                 if epoch % 10 == 0:
                     print(f"Epoch {epoch}, Loss: {sum([loss.data for loss in losses])}")
 
-            elif optimizer == 'batch_gradient_descent':
-                Optimizer.batch_gradient_descent(self.parameters(), learning_rate, batch_size)
+            elif optimizer == 'BGD':
+                Optimizer.batch_gradient_descent(self.parameters(), learning_rate, batch_size, multiclass = self.multiclass)
                 if epoch % 10 == 0:
                     print(f"Epoch {epoch}, Loss: {loss.data}")
