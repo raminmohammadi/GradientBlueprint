@@ -1,8 +1,7 @@
 [![pytest](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml/badge.svg)](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 # Gradient-Based Learning
-
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive Python library for gradient-based learning, including neural networks, logistic regression, support vector machines (SVM), and more.
 
@@ -60,9 +59,9 @@ Refer to the documentation and examples for detailed usage instructions and cust
 ## Examples
 Explore the examples directory for detailed usage examples and tutorials on how to use different components of the library:
 
-- [Simple MLP Example:](AUTOGRAD/src/NNS/FeedForward_Starter.ipynb) Basic usage example of building and training a multilayer perceptron (MLP).
-- [Logistic Regression Example:](/AUTOGRAD/src/Regression/Linear_Regression.ipynb) Example demonstrating how to use logistic regression for binary classification.
-- [SVM Example:](/AUTOGRAD/src/SVM/SVM.py) Example illustrating how to use support vector machines (SVM) for classification tasks.
+- [Simple MLP Example:](AUTOGRAD/src/NNS/) Basic usage example of building and training a multilayer perceptron (MLP).
+- [Logistic Regression Example:](/AUTOGRAD/src/Regression/) Example demonstrating how to use logistic regression for binary classification.
+- [SVM Example:](/AUTOGRAD/src/SVM/) Example illustrating how to use support vector machines (SVM) for classification tasks.
 
 ## Documentation
 For detailed documentation, including API reference and usage guidelines, refer to the Documentation.
