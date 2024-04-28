@@ -14,8 +14,8 @@ setup(
         'scikit-learn'
     ],
     author='Ramin Mohammadi',
-    author_email='r.mohammadi@northeastern.edu',
-    description='This package is ',
+    author_email='rey.mhmmd@gmail.com',
+    description='This is a comprehensive package designed to demystify the concepts of gradients and their applications across various machine learning algorithms. With this release, developers and researchers gain access to a powerful toolkit that simplifies the understanding and implementation of gradient-based optimization techniques.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/yourusername/your_package',
