@@ -1,8 +1,7 @@
 [![pytest](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml/badge.svg)](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 # Gradient-Based Learning
-
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive Python library for gradient-based learning, including neural networks, logistic regression, support vector machines (SVM), and more.
 
