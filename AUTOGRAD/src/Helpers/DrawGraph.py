@@ -2,7 +2,9 @@
 from graphviz import Digraph
 
 def trace(root):
-    # Builds a set of all nodes and edges in a graph
+    """
+    Builds a set of all nodes and edges in a graph
+    """
     nodes, edges = set(), set()
     def build(v):
         if v not in nodes:
@@ -15,6 +17,9 @@ def trace(root):
 
 
 def draw_dot(root):
+    """
+    draws the nework.
+    """
     dot = Digraph(format = 'svg', graph_attr = {'rankdir': "BT"}) # LR = left to right
     nodes, edges = trace(root)
 

@@ -1,12 +1,12 @@
-import sys
+import sys, os
 # Get the parent directory
 parent_directory = sys.path[0]  # Assumes the script is in the parent directory
 
 # Add the parent directory to the Python path
-sys.path.append(parent_directory)
-from  src.Helpers.DrawGraph import draw_dot
-import math, random
-import numpy as np
+sys.path.append(os.path.dirname(os.path.dirname(parent_directory)))
+
+from src.Helpers.DrawGraph import draw_dot
+import math
 
 
 class Variable:
@@ -67,6 +67,9 @@ class Variable:
         return output
 
     def __pow__(self, other):
+        """
+        To take a variable to the power of the other.
+        """
         assert isinstance(other, (int, float)), "Only supporting int/float powers for now"
         assert (self.data != 0.0 or (self.data ==0.0 and other > 0.0)), "0.0 can only be raised to a positive power"
         output = Variable(self.data ** other, _children=(self,), _op=f'**{other}')
@@ -79,6 +82,9 @@ class Variable:
             
 
     def exp(self):
+        """
+        To calculate the exp of a variable.
+        """
         x = self.data
         output = Variable(math.exp(x), _children=(self, ), _op='exp')
 
@@ -88,6 +94,9 @@ class Variable:
         return output
       
     def log(self):
+        """
+        To calculate the log of a variable.
+        """
         x = self.data
         output = Variable(math.log(x), _children=(self, ), _op='log')
         
@@ -98,6 +107,11 @@ class Variable:
 
 
     def backward(self):
+        """
+        To perform a backward propagation, this function will
+        fist convert the network to a topological graph then
+        in order will perform a back propagation.
+        """
         topological_graph = []
         visited_nodes = set()
         
@@ -115,13 +129,16 @@ class Variable:
             node._backward()
 
     def __draw__(self):
+        """
+        To visualize the network.
+        """
         return draw_dot(self)
                 
     def __repr__(self):
         """
         __repr__ is a built-in method in Python that returns a string representation of an object.
         """
-        return f"Variable(data={self.data})"
+        return f"Variable(data={self.data})|Child nodes(nodes={self._prev}|Label(label={self.label}))"
 
     def __truediv__(self, other):
         """
@@ -142,7 +159,8 @@ class Variable:
          __rsub__() method implements the reverse subtraction operation that is subtraction with reflected,
          swapped operands. # other - self
         """
-        return (self - other)  * -1
+        other = other if isinstance(other, Variable) else Variable(other) 
+        return (other - self)
 
 
     def __radd__(self, other): # other + self
