@@ -1,10 +1,17 @@
 import unittest
 import math
-import sys
+import sys, os
 
-sys.path.append('../src/Gradient/')
+# # Get the parent directory
+parent_directory = sys.path[0]  # Assumes the script is in the parent directory
 
-from Gradient import Variable
+# # Add the parent directory to the Python path
+grandparent_directory = os.path.dirname(parent_directory)
+
+sys.path.append(grandparent_directory)
+
+
+from src.Gradient.Gradient import Variable
 
 class Test_Gradient(unittest.TestCase):
     """Tests the following functions of Variable class.
