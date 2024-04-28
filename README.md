@@ -64,7 +64,7 @@ Explore the examples directory for detailed usage examples and tutorials on how 
 - [SVM Example:](/AUTOGRAD/src/SVM/) Example illustrating how to use support vector machines (SVM) for classification tasks.
 
 ## Documentation
-For detailed documentation, including API reference and usage guidelines, refer to the Documentation.
+For detailed [documentation](AUTOGRAD/documentation/), including API reference and usage guidelines, refer to the Documentation.
 
 ## Contributing
 Contributions to the Gradient-Based Learning Library are welcome! If you find any issues or have suggestions for improvement, please submit a pull request or open an issue on GitHub.
