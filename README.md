@@ -59,12 +59,12 @@ Refer to the documentation and examples for detailed usage instructions and cust
 ## Examples
 Explore the examples directory for detailed usage examples and tutorials on how to use different components of the library:
 
-- [Simple MLP Example:](AUTOGRAD/src/NNS/) Basic usage example of building and training a multilayer perceptron (MLP).
-- [Logistic Regression Example:](/AUTOGRAD/src/Regression/) Example demonstrating how to use logistic regression for binary classification.
-- [SVM Example:](/AUTOGRAD/src/SVM/) Example illustrating how to use support vector machines (SVM) for classification tasks.
+- [Simple MLP Example:](GradientBluePrint/src/NNS/) Basic usage example of building and training a multilayer perceptron (MLP).
+- [Logistic Regression Example:](/GradientBluePrint/src/Regression/) Example demonstrating how to use logistic regression for binary classification.
+- [SVM Example:](/GradientBluePrint/src/SVM/) Example illustrating how to use support vector machines (SVM) for classification tasks.
 
 ## Documentation
-For detailed [documentation](AUTOGRAD/documentation/), including API reference and usage guidelines, refer to the Documentation.
+For detailed [documentation](GradientBluePrint/documentation/), including API reference and usage guidelines, refer to the Documentation.
 
 ## Contributing
 Contributions to the Gradient-Based Learning Library are welcome! If you find any issues or have suggestions for improvement, please submit a pull request or open an issue on GitHub.
