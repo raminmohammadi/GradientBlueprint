@@ -105,20 +105,20 @@ print(b.data)  # Output: 7.38905609893065
 # db/da = e^a = e^2
 ```
 
-4. Automatic Differentiation
+## 4. Automatic Differentiation
 
-4.1. Backward Propagation
+### 4.1. Backward Propagation
 The backward method enables automatic differentiation by performing backward propagation through the computational graph. It calculates gradients with respect to the input variables using the chain rule.
 
-5. Visualization
-5.1. Graph Visualization
+## 5. Visualization
+### 5.1. Graph Visualization
 The `__draw__` method generates a visual representation of the computational graph using the draw_dot function. This visualization aids in understanding the structure of the graph and the flow of computations.
 
-6. Special Methods
+## 6. Special Methods
 The Variable class also implements special methods to support reverse operations (`__radd__`, `__rsub__`, `__rmul__`, `__rtruediv__`) and negation (__neg__).
 
-7. Examples
+## 7. Examples
 To illustrate the usage of the Variable class, let's consider some examples.
 
-8. Conclusion
+## 8. Conclusion
 The Variable class serves as a foundational tool for understanding computational graphs and automatic differentiation. By exploring its functionalities and examples, learners can gain insight into these core concepts, laying a solid foundation for further study in machine learning and deep learning.
