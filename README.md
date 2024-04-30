@@ -23,7 +23,7 @@ The Gradient-Based Learning Library is a versatile toolset for implementing and 
 Install the library using pip:
 
 ```bash
-pip install gradient-learning
+pip install gradientblueprint
 ```
 
 ## Usage
