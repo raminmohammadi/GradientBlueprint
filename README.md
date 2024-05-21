@@ -30,7 +30,7 @@ pip install gradientblueprint
 To use the library, import the necessary modules and classes into your Python code:
 
 ```python
-from gradient_learning import Variable, MLP, LogisticRegression, SVM, Optimizer, CostFunction
+from gradientblueprint import Variable, MLP, LogisticRegression, SVM, Optimizer, CostFunction
 ```
 
 Then, create instances of the provided classes and customize them according to your requirements. Here's a basic example of building and training a neural network:
