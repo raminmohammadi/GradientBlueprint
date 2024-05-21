@@ -1,4 +1,4 @@
-[![pytest](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml/badge.svg)](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml)
+[![pytest](https://github.com/raminmohammadi/gradientblueprint/actions/workflows/pytest.yml/badge.svg)](https://github.com/raminmohammadi/autograd/actions/workflows/pytest.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 # Gradient-Based Learning
