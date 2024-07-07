@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     
-    name = 'AUTOGRAD',
+    name = 'gradientblueprint',
     version = '1.0.0',
     packages = find_packages(),
     install_requires = [
@@ -21,8 +21,8 @@ setup(
     url='https://github.com/yourusername/your_package',
     classifiers=[
         'Programming Language :: Python :: 3',
-        # Add more classifiers as needed
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent"
     ],
-    
-    
+    python_requires='>=3.9',
 )
