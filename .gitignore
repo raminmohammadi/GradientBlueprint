@@ -10,7 +10,7 @@ autograde_env/
 .Python
 build/
 .ipynb_checkpoints
-*.ipynb
+
 develop-eggs/
 dist/
 downloads/
