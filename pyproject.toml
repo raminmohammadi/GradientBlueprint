@@ -7,10 +7,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gradientblueprint"
-version = "1.0.0"
+version = "1.0.5"
 description = "This is a comprehensive package designed to demystify the concepts of gradients and their applications across various machine learning algorithms. With this release, developers and researchers gain access to a powerful toolkit that simplifies the understanding and implementation of gradient-based optimization techniques."
 authors = [
-    {name="Ramin Mohammadi", email="rey.mhmmd@gmail.com"}
+    {name = "Ramin Mohammadi", email = "rey.mhmmd@gmail.com"}
 ]
 readme = "README.md"
 license = {text = "MIT"}
@@ -20,10 +20,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent"
 ]
-
-
 urls = {"Bug Tracker" = "https://github.com/raminmohammadi/GradientBlueprint/issues"}
-
 dependencies = [
     "pytest",
     "graphviz",
@@ -34,11 +31,9 @@ dependencies = [
     "matplotlib"
 ]
 
-[tool.pip]
-requirements = "requirements.txt"
-
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["gradientblueprint.*"]
