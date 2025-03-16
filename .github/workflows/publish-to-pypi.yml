@@ -1,4 +1,4 @@
-name: publish Pythobn Package to PyPI
+name: Publish Python Package
 
 on:
   release:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Publish package to PyPI
         run: |
-          python -m twine upload dist/*
+          python -m twine upload --skip-existing dist/*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
