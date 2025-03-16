@@ -18,7 +18,7 @@ setup(
     description='This is a comprehensive package designed to demystify the concepts of gradients and their applications across various machine learning algorithms. With this release, developers and researchers gain access to a powerful toolkit that simplifies the understanding and implementation of gradient-based optimization techniques.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/your_package',
+    url='https://github.com/raminmohammadi/GredientBlueprint',
     classifiers=[
         'Programming Language :: Python :: 3',
         "License :: OSI Approved :: MIT License",
