@@ -76,4 +76,4 @@ This project is licensed under the MIT License.
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=raminmohammadi/GradientBlueprint&type=Date)](https://star-history.com/#raminmohammadi/GradientBlueprint&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=raminmohammadi/GradientBlueprint&type=Date)](https://www.star-history.com/#raminmohammadi/GradientBlueprint&Date)
