@@ -18,7 +18,6 @@ The Gradient-Based Learning Library is a versatile toolset for implementing and 
 - Optimizers including stochastic gradient descent (SGD) and batch gradient descent
 - Extensible and easy-to-use API for adding custom models and functionalities
 
-![Visualization of the codebase](./diagram.svg)
 
 ## Installation
 
