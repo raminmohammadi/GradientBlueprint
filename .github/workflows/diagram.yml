@@ -17,10 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Update diagram
+      - name: Update diagram (no direct push)
         uses: githubocto/repo-visualizer@main
         with:
+          output_file: diagram.svg
           excluded_paths: "ignore,.github,.idea"
+          create_pull_request: false
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
