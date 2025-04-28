@@ -1,21 +1,31 @@
 name: Create diagram
+
 on:
   workflow_dispatch: {}
   push:
     branches:
       - main
 
-
 permissions:
   contents: write
-  
+  pull-requests: write
+
 jobs:
   get_data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Update diagram
         uses: githubocto/repo-visualizer@main
         with:
           excluded_paths: "ignore,.github,.idea"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "Repo visualizer: update diagram"
+          title: "Update Repo Diagram"
+          body: "Auto-generated repo diagram update"
+          branch: repo-diagram-update
